@@ -103,8 +103,8 @@ namespace TestEmgCV
                             {
                                 Rectangle[] eyesDetected = eye.DetectMultiScale(
                                    faceRegion,
-                                   1.1,
-                                   3,
+                                   1.2,
+                                   10,
                                    new Size(20, 20));
 
                                 foreach (Rectangle e in eyesDetected)

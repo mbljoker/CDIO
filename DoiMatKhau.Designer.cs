@@ -109,6 +109,7 @@
             this.Controls.Add(this.lbl_MKC);
             this.Name = "DoiMatKhau";
             this.Text = "DoiMatKhau";
+            this.Load += new System.EventHandler(this.DoiMatKhau_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

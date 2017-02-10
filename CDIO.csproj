@@ -32,17 +32,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emgu.CV">
+    <Reference Include="Emgu.CV, Version=3.0.0.2157, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\emgucv-windows-universal 3.0.0.2157\bin\Emgu.CV.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.CV.Cuda">
+    <Reference Include="Emgu.CV.Contrib">
+      <HintPath>..\..\..\..\..\emgucv-windows-universal 3.0.0.2157\bin\Emgu.CV.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.Cuda, Version=3.0.0.2157, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\emgucv-windows-universal 3.0.0.2157\bin\Emgu.CV.Cuda.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.CV.UI">
+    <Reference Include="Emgu.CV.OCR">
+      <HintPath>..\..\..\..\..\emgucv-windows-universal 3.0.0.2157\bin\Emgu.CV.OCR.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=3.0.0.2157, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\emgucv-windows-universal 3.0.0.2157\bin\Emgu.CV.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.Util">
+    <Reference Include="Emgu.Util, Version=3.0.0.2157, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\emgucv-windows-universal 3.0.0.2157\bin\Emgu.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,6 +82,7 @@
     <Compile Include="DoiMatKhau.Designer.cs">
       <DependentUpon>DoiMatKhau.cs</DependentUpon>
     </Compile>
+    <Compile Include="EigenObjectRecognizer.cs" />
     <Compile Include="MaHoaFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +96,7 @@
     <Compile Include="NhanDien.Designer.cs">
       <DependentUpon>NhanDien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Phu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DoiAnhDangNhap.resx">
@@ -137,6 +152,13 @@
     <Content Include="x86\opencv_ffmpeg300.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Anh\" />
+    <Folder Include="Emgu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

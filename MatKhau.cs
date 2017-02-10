@@ -9,7 +9,7 @@ namespace TestEmgCV
 {
     class MatKhau
     {
-        protected string MatKhau{get;set;}
+        protected string MatKhau1{get;set;}
         protected Bitmap MatKhauAnh { get; set; }
     }
 }
