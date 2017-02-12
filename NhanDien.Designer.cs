@@ -39,6 +39,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.imageBox3 = new Emgu.CV.UI.ImageBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -142,11 +143,21 @@
             this.imageBox3.TabIndex = 8;
             this.imageBox3.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 387);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Kết Quả :";
+            // 
             // NhanDien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 467);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.imageBox3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
@@ -161,6 +172,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -176,6 +188,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button button1;
         private Emgu.CV.UI.ImageBox imageBox3;
+        private System.Windows.Forms.Label label1;
 
     }
 }

@@ -19,7 +19,6 @@ namespace TestEmgCV
 
         private void DoiMatKhau_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
