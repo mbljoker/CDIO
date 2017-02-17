@@ -21,8 +21,7 @@ namespace TestEmgCV
 {
     public partial class DoiAnhDangNhap : Form
     {
-        private Capture capture = null;
-        private Capture mh1 = null;
+        private Capture capture;
         private bool captureInProgress; 
         public DoiAnhDangNhap()
         {
@@ -30,9 +29,7 @@ namespace TestEmgCV
             CvInvoke.UseOpenCL = false;
             try
             {
-                capture = new Capture();
-                mh1 = new Capture();
-                mh1.ImageGrabbed += mh1_ImageGrabbed;
+                capture = new Capture(CaptureType.Stereo);
                 capture.ImageGrabbed += ProcessFrame;
             }
             catch (NullReferenceException excpt)
@@ -41,64 +38,34 @@ namespace TestEmgCV
             }
         }
 
-        private void mh1_ImageGrabbed(object sender, EventArgs e)
-        {
-            Mat frame = new Mat();
-            capture.Retrieve(frame, 0);
-            imageBox2.Image = frame;
-        }
+       
         private void ProcessFrame(object sender, EventArgs arg)
         {
-            Mat frame = new Mat();
-            capture.Retrieve(frame, 0);
-            Mat image = frame; 
-            long detectionTime;
-            List<Rectangle> faces = new List<Rectangle>();
-            List<Rectangle> eyes = new List<Rectangle>();
-            bool tryUseCuda = false;
-            bool tryUseOpenCL = true;
-            DetectFace.Detect(
-              image, "haarcascade_frontalface_default.xml", "haarcascade_eye.xml",
-              faces, eyes,
-              tryUseCuda,
-              tryUseOpenCL,
-              out detectionTime);
 
-            foreach (Rectangle face in faces)
-            {
-                CvInvoke.Rectangle(image, face, new Bgr(Color.Yellow).MCvScalar, 3);
-                Bitmap c = frame.Bitmap;
-                Bitmap bmp = new Bitmap(face.Size.Width, face.Size.Height);
-                Graphics g = Graphics.FromImage(bmp);
-                g.DrawImage(c, 0, 0, face, GraphicsUnit.Pixel);
-            }
-
-            foreach (Rectangle eye in eyes)
-            {
-                CvInvoke.Rectangle(image, eye, new Bgr(Color.Green).MCvScalar, 2);
-                Bitmap c = frame.Bitmap;
-                Bitmap bmp = new Bitmap(eye.Size.Width, eye.Size.Height);
-                Graphics g = Graphics.FromImage(bmp);
-                g.DrawImage(c, 0, 0, eye, GraphicsUnit.Pixel);
-            }
-            imageBox1.Image = frame;
- 
+            Image<Gray, byte> frame;
+            frame = capture.QuerySmallFrame().ToImage<Gray, byte>();
+            imageBox2.Image = frame;
         }
         
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            mh1.Pause();
+         
             capture.Pause();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            mh1.Pause();
-            capture.Pause();
+            
+            capture.Start();
         }
 
         private void DoiAnhDangNhap_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void imageBox2_Click(object sender, EventArgs e)
         {
 
         }

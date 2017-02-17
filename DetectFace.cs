@@ -13,7 +13,7 @@ namespace TestEmgCV
     public static class DetectFace
     {
         public static void Detect(
-          Mat image, String faceFileName, String eyeFileName,
+         Mat image, String faceFileName, String eyeFileName,
           List<Rectangle> faces, List<Rectangle> eyes,
           bool tryUseCuda, bool tryUseOpenCL,
           out long detectionTime)

@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Emgu.CV.UI;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
-
 using System.IO;
 using System.Xml;
 using System.Runtime.InteropServices;
@@ -29,6 +27,8 @@ class Classifier_Train: IDisposable
     //Eigen
     //EigenObjectRecognizer recognizer;
     FaceRecognizer recognizer;
+    EigenFaceRecognizer a1 = new EigenFaceRecognizer();
+    
 
     //training variables
     List<Image<Gray, byte>> trainingImages = new List<Image<Gray, byte>>();//Images
@@ -53,7 +53,8 @@ class Classifier_Train: IDisposable
     /// </summary>
     public Classifier_Train()
     {
-        _IsTrained = LoadTrainingData(Application.StartupPath + "\\TrainedFaces");
+       
+        _IsTrained = LoadTrainingData(Application.StartupPath + "\\ImgTrain");
     }
 
     /// <summary>
@@ -73,7 +74,7 @@ class Classifier_Train: IDisposable
     /// <returns></returns>
     public bool Retrain()
     {
-        return _IsTrained = LoadTrainingData(Application.StartupPath + "\\TrainedFaces");
+        return _IsTrained = LoadTrainingData(Application.StartupPath + "\\ImgTrain");
     }
     /// <summary>
     /// Retrains the recognizer witout resetting variables like recognizer type.
@@ -104,6 +105,7 @@ class Classifier_Train: IDisposable
         if (_IsTrained)
         {
             FaceRecognizer.PredictionResult ER = recognizer.Predict(Input_image);
+        
 
             if (ER.Label == -1)
             {
@@ -116,27 +118,27 @@ class Classifier_Train: IDisposable
                 Eigen_label = Names_List[ER.Label];
                 Eigen_Distance = (float)ER.Distance;
                 if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
-
+                MessageBox.Show(Recognizer_Type+" "+Eigen_threshold+" "+Eigen_Distance);
                 //Only use the post threshold rule if we are using an Eigen Recognizer 
                 //since Fisher and LBHP threshold set during the constructor will work correctly 
-                if (Eigen_Distance > Eigen_threshold) return Eigen_label+" ";
-                return Eigen_label + " ";
-                /*switch (Recognizer_Type)
+                switch (Recognizer_Type)
                 {
                     case ("EMGU.CV.EigenFaceRecognizer"):
-                            
+                            if (Eigen_Distance > Eigen_threshold) return Eigen_label;
                             else return "Unknown";
                     case ("EMGU.CV.LBPHFaceRecognizer"):
                     case ("EMGU.CV.FisherFaceRecognizer"):
                     default:
                             return Eigen_label; //the threshold set in training controls unknowns
+                }
+
+               
                 
-                  }*/ 
                
             }
 
         }
-        else return " ";
+        else return "";
     }
 
     /// <summary>
@@ -298,24 +300,34 @@ class Classifier_Train: IDisposable
     /// <returns></returns>
     private bool LoadTrainingData(string Folder_location)
     {
-        //MessageBox.Show(Folder_location);        
-        if (File.Exists(Folder_location +"\\TrainedLabels.xml"))
+        if (File.Exists(Folder_location +"\\Data.txt"))
         {
-            
             try
             {
                 //message_bar.Text = "";
+
+                StreamReader SR = new StreamReader(Application.StartupPath + "/ImgTrain/Data.txt",Encoding.Unicode);
                 Names_List.Clear();
                 Names_List_ID.Clear();
                 trainingImages.Clear();
-                FileStream filestream = File.OpenRead(Folder_location + "\\TrainedLabels.xml");
-                long filelength = filestream.Length;
-                byte[] xmlBytes = new byte[filelength];
-                filestream.Read(xmlBytes, 0, (int)filelength);
-                filestream.Close();
+                string line;
+                while ((line = SR.ReadLine()) != null)
+                {
+                    string[] Arrstr=line.Split('%');
+                    Names_List_ID.Add(Names_List.Count); //0, 1, 2, 3....
+                    Names_List.Add(Arrstr[0]);
+                    NumLabels += 1;
+                    trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "/ImgTrain/"+Arrstr[1])); 
+                }
+                SR.Close();
+                //FileStream filestream = File.OpenRead(Folder_location + "\\TrainedLabels.xml");
+                //long filelength = filestream.Length;
+                //byte[] xmlBytes = new byte[filelength];
+                //filestream.Read(xmlBytes, 0, (int)filelength);
+                //filestream.Close();
 
-                MemoryStream xmlStream = new MemoryStream(xmlBytes);
-
+                //MemoryStream xmlStream = new MemoryStream(xmlBytes);
+                /*
                 using (XmlReader xmlreader = XmlTextReader.Create(xmlStream))
                 {
                     while (xmlreader.Read())
@@ -343,6 +355,7 @@ class Classifier_Train: IDisposable
                         }
                     }
                 }
+                 */
                 ContTrain = NumLabels;
 
                 if (trainingImages.ToArray().Length != 0)
@@ -386,11 +399,11 @@ class Classifier_Train: IDisposable
                             recognizer = new EigenFaceRecognizer(80, double.PositiveInfinity);
                             break;
                     }
-
+                    
                     recognizer.Train(trainingImages.ToArray(), Names_List_ID.ToArray());
                     // Recognizer_Type = recognizer.GetType();
                     // string v = recognizer.ToString(); //EMGU.CV.FisherFaceRecognizer || EMGU.CV.EigenFaceRecognizer || EMGU.CV.LBPHFaceRecognizer
-          //          MessageBox.Show("Vao1"); 
+
                     return true;
                 }
                 else return false;

@@ -30,18 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.imageBox1 = new Emgu.CV.UI.ImageBox();
             this.imageBox2 = new Emgu.CV.UI.ImageBox();
             this.button3 = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.imageBox1);
             this.groupBox1.Controls.Add(this.imageBox2);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.btnStart);
@@ -52,25 +49,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Camera";
             // 
-            // imageBox1
-            // 
-            this.imageBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imageBox1.Location = new System.Drawing.Point(6, 19);
-            this.imageBox1.Name = "imageBox1";
-            this.imageBox1.Size = new System.Drawing.Size(302, 262);
-            this.imageBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imageBox1.TabIndex = 2;
-            this.imageBox1.TabStop = false;
-            // 
             // imageBox2
             // 
             this.imageBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imageBox2.Location = new System.Drawing.Point(6, 19);
+            this.imageBox2.Location = new System.Drawing.Point(14, 21);
             this.imageBox2.Name = "imageBox2";
             this.imageBox2.Size = new System.Drawing.Size(295, 262);
-            this.imageBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imageBox2.TabIndex = 2;
             this.imageBox2.TabStop = false;
+            this.imageBox2.Click += new System.EventHandler(this.imageBox2_Click);
             // 
             // button3
             // 
@@ -96,13 +84,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 366);
+            this.ClientSize = new System.Drawing.Size(564, 366);
             this.Controls.Add(this.groupBox1);
             this.Name = "DoiAnhDangNhap";
             this.Text = "DoiAnhDangNhap";
             this.Load += new System.EventHandler(this.DoiAnhDangNhap_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).EndInit();
             this.ResumeLayout(false);
 
@@ -111,7 +99,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private Emgu.CV.UI.ImageBox imageBox1;
         private Emgu.CV.UI.ImageBox imageBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnStart;
