@@ -16,7 +16,14 @@ namespace TestEmgCV
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NhanDien());
+            //Application.Run(new DoiAnh());
+            identifyFolder Login = new identifyFolder();
+            if (Login.ShowDialog() == DialogResult.OK)
+            {         
+                MaHoaFile FormChinh = new MaHoaFile();
+                FormChinh.ShowDialog();
+            }
+
            
         }
     }

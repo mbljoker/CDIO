@@ -118,7 +118,6 @@ class Classifier_Train: IDisposable
                 Eigen_label = Names_List[ER.Label];
                 Eigen_Distance = (float)ER.Distance;
                 if (Eigen_Thresh > -1) Eigen_threshold = Eigen_Thresh;
-                MessageBox.Show(Recognizer_Type+" "+Eigen_threshold+" "+Eigen_Distance);
                 //Only use the post threshold rule if we are using an Eigen Recognizer 
                 //since Fisher and LBHP threshold set during the constructor will work correctly 
                 switch (Recognizer_Type)
@@ -186,99 +185,6 @@ class Classifier_Train: IDisposable
     }
 
     /// <summary>
-    /// Saves the trained Eigen Recogniser to specified location
-    /// </summary>
-    /// <param name="filename"></param>
-    public void Save_Eigen_Recogniser(string filename)
-    {
-        recognizer.Save(filename);
-
-        //save label data as this isn't saved with the network
-        string direct = Path.GetDirectoryName(filename);
-        FileStream Label_Data = File.OpenWrite(direct + "/Labels.xml");
-        using (XmlWriter writer = XmlWriter.Create(Label_Data))
-        {
-            writer.WriteStartDocument();
-            writer.WriteStartElement("Labels_For_Recognizer_sequential");
-            for (int i = 0; i < Names_List.Count; i++)
-            {
-                writer.WriteStartElement("LABEL");
-                writer.WriteElementString("POS", i.ToString());
-                writer.WriteElementString("NAME", Names_List[i]);
-                writer.WriteEndElement();
-            }
-
-            writer.WriteEndElement();
-            writer.WriteEndDocument();
-        }
-        Label_Data.Close();
-    }
-
-    /// <summary>
-    /// Loads the trained Eigen Recogniser from specified location
-    /// </summary>
-    /// <param name="filename"></param>
-    public void Load_Eigen_Recogniser(string filename)
-    {
-        //Lets get the recogniser type from the file extension
-        string ext = Path.GetExtension(filename);
-        switch (ext)
-        {
-            case (".LBPH"):
-                Recognizer_Type = "EMGU.CV.LBPHFaceRecognizer";
-                recognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 100);//50
-                break;
-            case (".FFR"):
-                Recognizer_Type = "EMGU.CV.FisherFaceRecognizer";
-                recognizer = new FisherFaceRecognizer(0, 3500);//4000
-                break;
-            case (".EFR"):
-                Recognizer_Type = "EMGU.CV.EigenFaceRecognizer";
-                recognizer = new EigenFaceRecognizer(80, double.PositiveInfinity);
-                break;
-        }
-
-        //introduce error checking
-        recognizer.Load(filename);
-
-        //Now load the labels
-        string direct = Path.GetDirectoryName(filename);
-        Names_List.Clear();
-        if (File.Exists(direct + "/Labels.xml"))
-        {
-            FileStream filestream = File.OpenRead(direct + "/Labels.xml");
-            long filelength = filestream.Length;
-            byte[] xmlBytes = new byte[filelength];
-            filestream.Read(xmlBytes, 0, (int)filelength);
-            filestream.Close();
-
-            MemoryStream xmlStream = new MemoryStream(xmlBytes);
-
-            using (XmlReader xmlreader = XmlTextReader.Create(xmlStream))
-            {
-                while (xmlreader.Read())
-                {
-                    if (xmlreader.IsStartElement())
-                    {
-                        switch (xmlreader.Name)
-                        {
-                            case "NAME":
-                                if (xmlreader.Read())
-                                {
-                                    Names_List.Add(xmlreader.Value.Trim());
-                                }
-                                break;
-                        }
-                    }
-                }
-            }
-            ContTrain = NumLabels;
-        }
-        _IsTrained = true;
-
-    }
-
-        /// <summary>
     /// Dispose of Class call Garbage Collector
     /// </summary>
     public void Dispose()
@@ -320,42 +226,7 @@ class Classifier_Train: IDisposable
                     trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "/ImgTrain/"+Arrstr[1])); 
                 }
                 SR.Close();
-                //FileStream filestream = File.OpenRead(Folder_location + "\\TrainedLabels.xml");
-                //long filelength = filestream.Length;
-                //byte[] xmlBytes = new byte[filelength];
-                //filestream.Read(xmlBytes, 0, (int)filelength);
-                //filestream.Close();
-
-                //MemoryStream xmlStream = new MemoryStream(xmlBytes);
-                /*
-                using (XmlReader xmlreader = XmlTextReader.Create(xmlStream))
-                {
-                    while (xmlreader.Read())
-                    {
-                        if (xmlreader.IsStartElement())
-                        {
-                            switch (xmlreader.Name)
-                            {
-                                case "NAME":
-                                    if (xmlreader.Read())
-                                    {
-                                        Names_List_ID.Add(Names_List.Count); //0, 1, 2, 3....
-                                        Names_List.Add(xmlreader.Value.Trim());
-                                        NumLabels += 1;
-                                    }
-                                    break;
-                                case "FILE":
-                                    if (xmlreader.Read())
-                                    {
-                                        //PROBLEM HERE IF TRAININGG MOVED
-                                        trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\TrainedFaces\\" + xmlreader.Value.Trim()));
-                                    }
-                                    break;
-                            }
-                        }
-                    }
-                }
-                 */
+               
                 ContTrain = NumLabels;
 
                 if (trainingImages.ToArray().Length != 0)

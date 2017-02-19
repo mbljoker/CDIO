@@ -56,6 +56,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(475, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // đổiMãPinToolStripMenuItem
             // 
@@ -71,13 +72,15 @@
             // 
             this.đổiMãPinToolStripMenuItem1.Name = "đổiMãPinToolStripMenuItem1";
             this.đổiMãPinToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.đổiMãPinToolStripMenuItem1.Text = "Đổi Mã Pin";
+            this.đổiMãPinToolStripMenuItem1.Text = "Đổi Mật Khẩu";
+            this.đổiMãPinToolStripMenuItem1.Click += new System.EventHandler(this.đổiMãPinToolStripMenuItem1_Click);
             // 
             // đổiẢnhĐăngNhậpToolStripMenuItem
             // 
             this.đổiẢnhĐăngNhậpToolStripMenuItem.Name = "đổiẢnhĐăngNhậpToolStripMenuItem";
             this.đổiẢnhĐăngNhậpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.đổiẢnhĐăngNhậpToolStripMenuItem.Text = "Đổi Ảnh Đăng Nhập";
+            this.đổiẢnhĐăngNhậpToolStripMenuItem.Click += new System.EventHandler(this.đổiẢnhĐăngNhậpToolStripMenuItem_Click);
             // 
             // btn_AddFile
             // 

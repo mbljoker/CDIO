@@ -71,11 +71,11 @@
   <ItemGroup>
     <Compile Include="Classifier_Train.cs" />
     <Compile Include="DetectFace.cs" />
-    <Compile Include="DoiAnhDangNhap.cs">
+    <Compile Include="DoiAnh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DoiAnhDangNhap.Designer.cs">
-      <DependentUpon>DoiAnhDangNhap.cs</DependentUpon>
+    <Compile Include="DoiAnh.Designer.cs">
+      <DependentUpon>DoiAnh.cs</DependentUpon>
     </Compile>
     <Compile Include="DoiMatKhau.cs">
       <SubType>Form</SubType>
@@ -84,6 +84,12 @@
       <DependentUpon>DoiMatKhau.cs</DependentUpon>
     </Compile>
     <Compile Include="EigenObjectRecognizer.cs" />
+    <Compile Include="identifyFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="identifyFolder.Designer.cs">
+      <DependentUpon>identifyFolder.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaHoaFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,26 +97,19 @@
       <DependentUpon>MaHoaFile.cs</DependentUpon>
     </Compile>
     <Compile Include="MatKhau.cs" />
-    <Compile Include="NhanDien.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NhanDien.Designer.cs">
-      <DependentUpon>NhanDien.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Phu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DoiAnhDangNhap.resx">
-      <DependentUpon>DoiAnhDangNhap.cs</DependentUpon>
+    <EmbeddedResource Include="DoiAnh.resx">
+      <DependentUpon>DoiAnh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DoiMatKhau.resx">
       <DependentUpon>DoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="identifyFolder.resx">
+      <DependentUpon>identifyFolder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaHoaFile.resx">
       <DependentUpon>MaHoaFile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NhanDien.resx">
-      <DependentUpon>NhanDien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -141,6 +140,21 @@
     <Content Include="haarcascade_frontalface_default.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="x64\cvextern.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\cvextern_test.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\msvcp120.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\msvcr120.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\opencv_ffmpeg300_64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="x86\cvextern.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -154,10 +168,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Anh\" />
-    <Folder Include="Emgu\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
