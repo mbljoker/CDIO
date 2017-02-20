@@ -35,6 +35,8 @@
             this.đổiẢnhĐăngNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_AddFile = new System.Windows.Forms.Button();
             this.btn_AddFolder = new System.Windows.Forms.Button();
+            this.TenFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -42,7 +44,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 119);
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TenFile,
+            this.TrangThai});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 128);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(451, 237);
             this.dataGridView1.TabIndex = 0;
@@ -101,6 +106,23 @@
             this.btn_AddFolder.TabIndex = 3;
             this.btn_AddFolder.Text = "Thêm Folder";
             this.btn_AddFolder.UseVisualStyleBackColor = true;
+            this.btn_AddFolder.Click += new System.EventHandler(this.btn_AddFolder_Click);
+            // 
+            // TenFile
+            // 
+            this.TenFile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TenFile.DataPropertyName = "Tên File";
+            this.TenFile.HeaderText = "Tên File";
+            this.TenFile.Name = "TenFile";
+            this.TenFile.Width = 70;
+            // 
+            // TrangThai
+            // 
+            this.TrangThai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TrangThai.DataPropertyName = "Trạng Thái";
+            this.TrangThai.HeaderText = "Trạng Thái";
+            this.TrangThai.Name = "TrangThai";
+            this.TrangThai.Width = 84;
             // 
             // MaHoaFile
             // 
@@ -132,5 +154,7 @@
         private System.Windows.Forms.ToolStripMenuItem đổiẢnhĐăngNhậpToolStripMenuItem;
         private System.Windows.Forms.Button btn_AddFile;
         private System.Windows.Forms.Button btn_AddFolder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenFile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
     }
 }

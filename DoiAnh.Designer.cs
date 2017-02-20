@@ -88,7 +88,7 @@
             this.btn_10anh.Name = "btn_10anh";
             this.btn_10anh.Size = new System.Drawing.Size(75, 23);
             this.btn_10anh.TabIndex = 3;
-            this.btn_10anh.Text = "Đào Tạo ";
+            this.btn_10anh.Text = "Lưu";
             this.btn_10anh.UseVisualStyleBackColor = true;
             this.btn_10anh.Click += new System.EventHandler(this.btn_10anh_Click);
             // 

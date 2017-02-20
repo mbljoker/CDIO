@@ -90,6 +90,7 @@
     <Compile Include="identifyFolder.Designer.cs">
       <DependentUpon>identifyFolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocationFolder.cs" />
     <Compile Include="MaHoaFile.cs">
       <SubType>Form</SubType>
     </Compile>
