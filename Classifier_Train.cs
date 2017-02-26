@@ -105,8 +105,7 @@ class Classifier_Train: IDisposable
         if (_IsTrained)
         {
             FaceRecognizer.PredictionResult ER = recognizer.Predict(Input_image);
-        
-
+       
             if (ER.Label == -1)
             {
                 Eigen_label = "Unknown";

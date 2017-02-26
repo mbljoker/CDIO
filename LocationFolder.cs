@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace TestEmgCV
 {
@@ -15,6 +16,18 @@ namespace TestEmgCV
         bool Status=false;
         string PathLocationFolderLock;
         bool FileFolder;
+       
+        string NameF;
+
+        public string getNameF()
+        {
+            return NameF;
+        }
+
+        public void setNameF(string path)
+        {
+            NameF = path;
+        }
 
         public string getPathLocationFolder()
         {
@@ -67,47 +80,6 @@ namespace TestEmgCV
         {
             FileFolder = path;
         }
-
-
-        ///Tải dữ liệu File lên
-        public List<LocationFolder> loadFlieLock()
-        {
-            List<LocationFolder> arrLocation = new List<LocationFolder>();
-            if (File.Exists(Application.StartupPath + "/SaveFolder/LocationFolder.txt"))
-            {
-                
-                try
-                {
-                    StreamReader SR = new StreamReader(Application.StartupPath + "/SaveFolder/LocationFolder.txt", Encoding.Unicode);
-                    string line;
-                    while ((line = SR.ReadLine()) != null)
-                    {
-                        ///Chuẩn : Tên File|Thuộc Tính File | Địa chỉ Lock File|KeyLock| Trạng Thái
-                        string[] arrStr = line.Split('|');
-                         
-                        LocationFolder tam = new LocationFolder();    
-                        tam.setPathLocationFolder(arrStr[0]);
-                        tam.setFileFolder(arrStr[1] == "1" ? true : false);
-                        tam.setPathLocationFolderLock(arrStr[2]);
-                        tam.setKeyLock(arrStr[3]);
-                        tam.setStatus(arrStr[4] == "1" ? true : false);
-                        arrLocation.Add(tam);            
-                    }
-                   // MessageBox.Show(""+arrLocation.Count);
-                    SR.Close();
-                    return arrLocation;
-                  
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                    return null;
-                }
-            }
-           // else return false;
-            return arrLocation;
-        }
-
 
     }
 }

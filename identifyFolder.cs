@@ -23,7 +23,7 @@ namespace TestEmgCV
         public CascadeClassifier Face = new CascadeClassifier(Application.StartupPath + "/haarcascade_frontalface_default.xml");
         string PathFolderImg = "";
         Classifier_Train EigenRecog = new Classifier_Train();
-        int Threshold = 2500;
+        int Threshold = 1500;
         public identifyFolder()
         {
             InitializeComponent();
