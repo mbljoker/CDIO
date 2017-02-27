@@ -61,7 +61,7 @@ namespace TestEmgCV
             else str=d.Parent.FullName + d.Name + Key;
             d.MoveTo(str);
             // Ẩn folder
-            //d.Attributes = FileAttributes.Hidden;
+            d.Attributes = FileAttributes.Hidden;
             return str;
             
         }
@@ -77,7 +77,7 @@ namespace TestEmgCV
             if (pass==returnPass(path) )
             {
                 ///Mở Ẩn
-                //d.Attributes = FileAttributes.Normal;
+                d.Attributes = FileAttributes.Normal;
                 d = new DirectoryInfo(path);
                 File.Delete(path + "\\" + FilePass);
                 //lấy về địa chỉ file cũ
