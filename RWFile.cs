@@ -102,7 +102,7 @@ namespace TestEmgCV
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " Lộc");
+                MessageBox.Show(ex.Message + "Lỗi phần lưu file ");
                 return false;
             }
 

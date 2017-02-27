@@ -36,14 +36,13 @@
             this.đổiMãPinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đổiMãPinToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.đổiẢnhĐăngNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_AddFile = new System.Windows.Forms.Button();
             this.btn_AddFolder = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.khóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mởKhóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mởKhóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.khóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -66,8 +65,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseMove);
-            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
-            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             this.dataGridView1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseMove);
             // 
             // TenFile
@@ -96,14 +93,12 @@
             this.menuStrip1.Size = new System.Drawing.Size(475, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // đổiMãPinToolStripMenuItem
             // 
             this.đổiMãPinToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.đổiMãPinToolStripMenuItem1,
-            this.đổiẢnhĐăngNhậpToolStripMenuItem,
-            this.thoátToolStripMenuItem});
+            this.đổiẢnhĐăngNhậpToolStripMenuItem});
             this.đổiMãPinToolStripMenuItem.Name = "đổiMãPinToolStripMenuItem";
             this.đổiMãPinToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.đổiMãPinToolStripMenuItem.Text = "Mật Khẩu";
@@ -122,13 +117,6 @@
             this.đổiẢnhĐăngNhậpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.đổiẢnhĐăngNhậpToolStripMenuItem.Text = "Đổi Ảnh Đăng Nhập";
             this.đổiẢnhĐăngNhậpToolStripMenuItem.Click += new System.EventHandler(this.đổiẢnhĐăngNhậpToolStripMenuItem_Click);
-            // 
-            // thoátToolStripMenuItem
-            // 
-            this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.thoátToolStripMenuItem.Text = "Thoát";
-            this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
             // 
             // btn_AddFile
             // 
@@ -160,23 +148,13 @@
             this.khóaToolStripMenuItem,
             this.xóaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 92);
             // 
-            // xóaToolStripMenuItem
+            // openToolStripMenuItem
             // 
-            this.xóaToolStripMenuItem.Image = global::TestEmgCV.Properties.Resources.Xoa;
-            this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
-            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.xóaToolStripMenuItem.Text = "Xóa";
-            this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
-            // 
-            // khóaToolStripMenuItem
-            // 
-            this.khóaToolStripMenuItem.Image = global::TestEmgCV.Properties.Resources.Khoa;
-            this.khóaToolStripMenuItem.Name = "khóaToolStripMenuItem";
-            this.khóaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.khóaToolStripMenuItem.Text = "Khóa";
-            this.khóaToolStripMenuItem.Click += new System.EventHandler(this.khóaToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.openToolStripMenuItem.Text = "Open";
             // 
             // mởKhóaToolStripMenuItem
             // 
@@ -186,11 +164,21 @@
             this.mởKhóaToolStripMenuItem.Text = "Mở Khóa";
             this.mởKhóaToolStripMenuItem.Click += new System.EventHandler(this.mởKhóaToolStripMenuItem_Click);
             // 
-            // openToolStripMenuItem
+            // khóaToolStripMenuItem
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.openToolStripMenuItem.Text = "Open";
+            this.khóaToolStripMenuItem.Image = global::TestEmgCV.Properties.Resources.Khoa;
+            this.khóaToolStripMenuItem.Name = "khóaToolStripMenuItem";
+            this.khóaToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.khóaToolStripMenuItem.Text = "Khóa";
+            this.khóaToolStripMenuItem.Click += new System.EventHandler(this.khóaToolStripMenuItem_Click);
+            // 
+            // xóaToolStripMenuItem
+            // 
+            this.xóaToolStripMenuItem.Image = global::TestEmgCV.Properties.Resources.Xoa;
+            this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.xóaToolStripMenuItem.Text = "Xóa";
+            this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
             // 
             // MaHoaFile
             // 
@@ -223,7 +211,6 @@
         private System.Windows.Forms.ToolStripMenuItem đổiẢnhĐăngNhậpToolStripMenuItem;
         private System.Windows.Forms.Button btn_AddFile;
         private System.Windows.Forms.Button btn_AddFolder;
-        private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenFile;

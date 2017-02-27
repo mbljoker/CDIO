@@ -24,6 +24,7 @@ namespace TestEmgCV
                 FormChinh.ShowDialog();
             }
             */
+            ///test lock Folder
             /*
             string str1=null;
             LockAndUnlock.Pass.loadPass();
@@ -35,8 +36,12 @@ namespace TestEmgCV
                 MessageBox.Show("Lock Thành công !");
             }
            */
-
-           
+            ///Test Lock File
+            /*
+            string st=LockAndUnlock.LockFile("C:\\Users\\LBMJoker\\Desktop\\aaaaa.txt", "aaaaa.txt", "123456");
+            MessageBox.Show(st);
+            string st1 = LockAndUnlock.unlockFile(st, "aaaaa.txt", "123456");
+           */
         }
     }
 }
