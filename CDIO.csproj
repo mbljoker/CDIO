@@ -91,6 +91,7 @@
       <DependentUpon>identifyFolder.cs</DependentUpon>
     </Compile>
     <Compile Include="LocationFolder.cs" />
+    <Compile Include="LockAndUnlock.cs" />
     <Compile Include="MaHoaFile.cs">
       <SubType>Form</SubType>
     </Compile>

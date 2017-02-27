@@ -20,6 +20,10 @@ namespace TestEmgCV
         /// </summary>
         /// <param name="Pass"></param>
         /// <returns></returns>
+        public string getPassWord()
+        {
+            return PassWord;
+        }
         public bool SavePass(string Pass)
         {
             try
@@ -63,13 +67,13 @@ namespace TestEmgCV
             if (loadPass() == true)
             {
                 Pass = getMD5(Pass);
-                return Pass == PassWord;
+                return Pass==PassWord;
             }
             return false;
             
         }
 
-        bool loadPass()
+        public bool loadPass()
         {
             try{
                 //Thêm cơ sở dữ liệu vào sau

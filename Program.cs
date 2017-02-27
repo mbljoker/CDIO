@@ -24,7 +24,17 @@ namespace TestEmgCV
                 FormChinh.ShowDialog();
             }
             */
-
+            /*
+            string str1=null;
+            LockAndUnlock.Pass.loadPass();
+            str1=LockAndUnlock.lockFolder("C:\\Users\\LBMJoker\\Desktop\\Test");
+            if(str1!=null) MessageBox.Show(str1);
+            string str = LockAndUnlock.Pass.getMD5("123456");
+            if (LockAndUnlock.unlockFoder(str1,str)!=null)
+            {
+                MessageBox.Show("Lock Thành công !");
+            }
+           */
 
            
         }

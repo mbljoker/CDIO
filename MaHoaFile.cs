@@ -51,6 +51,7 @@ namespace TestEmgCV
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
+            LockAndUnlock.Pass=Pass;
             
             
            
@@ -88,16 +89,27 @@ namespace TestEmgCV
                 //Chuẩn : Tên File|Thuộc Tính File | Địa chỉ Lock File|KeyLock| Trạng Thái|Tên File
                 if (IdLcFd.ContainsKey(Path) == false)
                 {
+                    string strT = null;
                     LocationFolder tam = new LocationFolder();
                     string[] arrStr = Path.Split('\\');
                     tam.setNameF(arrStr[arrStr.Length-1]);
                     tam.setPathLocationFolder(Path);
-                    //tam.setKeyLock(true);Chưa thêm vào
-                    //tam.setPathLocationFolderLock();
+                    strT=LockAndUnlock.lockFolder(Path);
+                    if (strT != null)
+                    {
+                        tam.setKeyLock(Pass.getPassWord());
+                        tam.setPathLocationFolderLock(strT);
+                        tam.setStatus(true);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Khóa File bị lỗi !");
+                    }
+                    
                     tam.setFileFolder(false);
-                    tam.setStatus(true);
+                    
                     string s = Path + "|" + "1|" + tam.getPathLocationFolderLock() + "|"
-                                + tam.getKeyLock() + "|" + "1" + "|" + tam.getNameF();
+                        + tam.getKeyLock() + "|" + (tam.getStatus()==true?"1":"0") + "|" + tam.getNameF();
                     SW.Write(s + "\n");
                     ArrLocation.Add(tam);
                     IdLcFd.Add(Path, 1);
@@ -122,6 +134,8 @@ namespace TestEmgCV
             {
 
                 dtTam.Rows.Add(list[i].getNameF(),list[i].getStatus()==true?"Lock":"Unlock");
+                MessageBox.Show(list[i].getPathLocationFolder()+"\n"+list[i].getPathLocationFolderLock()
+                                    +"\n"+list[i].getKeyLock()+"\n"+list[i].getStatus());
               
                 
             }
@@ -184,19 +198,27 @@ namespace TestEmgCV
         {
 
         }
-
+        /// <summary>
+        /// Đưa file ra khỏi chế độ lock
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count > 0)
             {
-               
+               //Xóa file và ghi lại list mới nếu list còn 1 giá trị thì new lại đối tương mới 
                 RWFile.saveFile(File1, null, true);
+                if (ArrLocation[dataGridView1.CurrentRow.Index].getStatus()==true) mởKhóaToolStripMenuItem.PerformClick();
                 if (dataGridView1.CurrentRow.Index == 0)
                 {
                     ArrLocation = new List<LocationFolder>();
+                    IdLcFd = new Hashtable();
                 }
                 else
                 {
+                    ///Xóa key trong HashTable
+                    IdLcFd.Remove(ArrLocation[dataGridView1.CurrentRow.Index].getPathLocationFolder());
                     ArrLocation.RemoveAt(dataGridView1.CurrentRow.Index);
                     foreach (LocationFolder tam in ArrLocation)
                     {
@@ -204,6 +226,7 @@ namespace TestEmgCV
                     }
 
                 }
+                //cập nhật lại dữ liệu trên dgv
                 dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
                 MessageBox.Show("Xóa thành Công !");
             }
@@ -215,7 +238,11 @@ namespace TestEmgCV
         {
             
         }
-
+        /// <summary>
+        /// Khi di chuyển chuột vào dgr thì tự chọn hàng 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
             //MessageBox.Show(e.RowIndex.ToString());
@@ -224,7 +251,7 @@ namespace TestEmgCV
             {
                 dataGridView1.Rows[e.RowIndex].Cells[0].Selected = true;
                 dataGridView1.Rows[e.RowIndex].Selected=true;
-                if (dataGridView1.Rows[e.RowIndex].Cells[1].Value=="Lock")
+                if (dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()=="Lock")
                 {
                     khóaToolStripMenuItem.Visible = false;
                     mởKhóaToolStripMenuItem.Visible = true;
@@ -240,10 +267,24 @@ namespace TestEmgCV
            
         }
 
+
+
         private void mởKhóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value = "UnLock";
-            ArrLocation[dataGridView1.CurrentRow.Index].setStatus(false);
+            
+            string strT=LockAndUnlock.unlockFoder(ArrLocation[dataGridView1.CurrentRow.Index].getPathLocationFolderLock(),
+                                        ArrLocation[dataGridView1.CurrentRow.Index].getKeyLock());
+            
+            if (strT != null)
+            {
+                
+                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value = "UnLock";
+                ArrLocation[dataGridView1.CurrentRow.Index].setStatus(false);
+            }
+            else
+            {
+                MessageBox.Show("Lỗi mở Khóa !");
+            }
             RWFile.saveFile(File1, null, true);
             foreach (LocationFolder tam in ArrLocation)
             {
@@ -263,12 +304,18 @@ namespace TestEmgCV
 
         private void khóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value= "Lock";
-            ArrLocation[dataGridView1.CurrentRow.Index].setStatus(true);
-            RWFile.saveFile(File1, null, true);
-            foreach (LocationFolder tam in ArrLocation)
+            string strT;
+            strT=LockAndUnlock.lockFolder(ArrLocation[dataGridView1.CurrentRow.Index].getPathLocationFolder());
+            if (strT != null)
             {
-                RWFile.saveFile(File1, tam, false);
+                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value = "Lock";
+                ArrLocation[dataGridView1.CurrentRow.Index].setStatus(true);
+
+                RWFile.saveFile(File1, null, true);
+                foreach (LocationFolder tam in ArrLocation)
+                {
+                    RWFile.saveFile(File1, tam, false);
+                }
             }
         }
     }

@@ -12,7 +12,11 @@ namespace TestEmgCV
     class RWFile
     {
         static public Hashtable IdLtFd = new Hashtable();
-        ///Tải dữ liệu File lên
+        /// <summary>
+        /// Tải dữ liệu từ File lên
+        /// </summary>
+        /// <returns></returns>
+
         static public List<LocationFolder> loadFlieLock()
         {
             List<LocationFolder> arrLocation = new List<LocationFolder>();
@@ -58,6 +62,13 @@ namespace TestEmgCV
             return arrLocation;
         }
 
+        /// <summary>
+        /// Lưu Dữ liệu vào file SaveFolder
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="tam"></param>
+        /// <param name="xoa"></param>
+        /// <returns></returns>
 
         static public bool saveFile(string file, LocationFolder tam, bool xoa)
         {
@@ -65,7 +76,7 @@ namespace TestEmgCV
             try
             {
                 if (xoa == true)
-                    if (File.Exists(file))//))
+                    if (File.Exists(file))
                     {
                         File.Delete(file);  
                         File.Create(file).Close() ;
@@ -87,8 +98,6 @@ namespace TestEmgCV
                     SW.Close();
                     return true;
                 }
-
-
 
             }
             catch (Exception ex)
