@@ -18,7 +18,8 @@ namespace TestEmgCV
         
         static void Main()
         {
-            string key = "11112323a2";      
+            string key = "11112323a2";  
+    
             RegistryKey regKey = Registry.CurrentUser;
             if(regKey.OpenSubKey("Software\\LockFolder")==null)
             {
