@@ -10,6 +10,7 @@ namespace TestEmgCV
 {
     class LockAndUnlock
     {
+        
         public const string Key = ".{2559a1f2-21d7-11d4-bdaf-00c04f60b9f0}";//Dùng để lock
         public const string FilePass="a1291gv.text";//File chứa mật khẩu lock
         //static public MatKhau Pass=new MatKhau();
@@ -61,7 +62,7 @@ namespace TestEmgCV
             else str=d.Parent.FullName + d.Name + Key;
             d.MoveTo(str);
             // Ẩn folder
-            d.Attributes = FileAttributes.Hidden;
+            d.Attributes = FileAttributes.Hidden | FileAttributes.System|FileAttributes.ReadOnly;
             return str;
             
         }
@@ -77,8 +78,9 @@ namespace TestEmgCV
             if (pass==returnPass(path) )
             {
                 ///Mở Ẩn
-                d.Attributes = FileAttributes.Normal;
+                
                 d = new DirectoryInfo(path);
+                d.Attributes = FileAttributes.Normal;
                 File.Delete(path + "\\" + FilePass);
                 //lấy về địa chỉ file cũ
                 str = path.Substring(0, path.LastIndexOf("."));
@@ -158,7 +160,7 @@ namespace TestEmgCV
                 string strT = LockAndUnlock.unlockFoder(path, pass);
                 DirectoryInfo di = new DirectoryInfo(path);
                 //Chuyển file về vị trí cũ 
-                MessageBox.Show(strT + "\\" + filename+"\n" +di.Parent.FullName + "\\" + filename);
+                //MessageBox.Show(strT + "\\" + filename+"\n" +di.Parent.FullName + "\\" + filename);
                 File.Move(strT + "\\" + filename, di.Parent.FullName + "\\" + filename);
                 //Xóa folder tạm
                 Directory.Delete(strT);

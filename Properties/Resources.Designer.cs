@@ -63,6 +63,36 @@ namespace TestEmgCV.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Creative_Freedom_Shimmer_Document_Add {
+            get {
+                object obj = ResourceManager.GetObject("Creative-Freedom-Shimmer-Document-Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Creative_Freedom_Shimmer_Document_Add1 {
+            get {
+                object obj = ResourceManager.GetObject("Creative-Freedom-Shimmer-Document-Add1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Folder_Blue_Add {
+            get {
+                object obj = ResourceManager.GetObject("Folder-Blue Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Khoa {
             get {
                 object obj = ResourceManager.GetObject("Khoa", resourceCulture);
@@ -76,6 +106,16 @@ namespace TestEmgCV.Properties {
         internal static System.Drawing.Bitmap MoKhoa {
             get {
                 object obj = ResourceManager.GetObject("MoKhoa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vforum_vn_hinh_nen_xanh_dep_6 {
+            get {
+                object obj = ResourceManager.GetObject("vforum.vn-hinh-nen-xanh-dep-6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

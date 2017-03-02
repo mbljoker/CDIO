@@ -35,10 +35,14 @@
             this.btn_Xong = new System.Windows.Forms.Button();
             this.btn_10anh = new System.Windows.Forms.Button();
             this.imageBox2 = new Emgu.CV.UI.ImageBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -62,6 +66,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.btn_Xong);
             this.groupBox1.Controls.Add(this.btn_10anh);
             this.groupBox1.Controls.Add(this.imageBox2);
@@ -101,13 +106,38 @@
             this.imageBox2.TabIndex = 2;
             this.imageBox2.TabStop = false;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(6, 19);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(188, 23);
+            this.progressBar1.TabIndex = 5;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.progressBar1);
+            this.groupBox3.Location = new System.Drawing.Point(6, 279);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 55);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
             // DoiAnh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(730, 409);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(746, 448);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximumSize = new System.Drawing.Size(746, 448);
+            this.MinimumSize = new System.Drawing.Size(746, 448);
             this.Name = "DoiAnh";
             this.Text = "DoiAnh";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DoiAnh_FormClosing);
@@ -116,6 +146,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -128,6 +159,9 @@
         private System.Windows.Forms.Button btn_Xong;
         private System.Windows.Forms.Button btn_10anh;
         private Emgu.CV.UI.ImageBox imageBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
 
     }
 }

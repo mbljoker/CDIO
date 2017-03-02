@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TestEmgCV
 {
@@ -28,16 +29,19 @@ namespace TestEmgCV
         {
             try
             {
+                ///Lưu vào file Pass.txt
                 Pass = getMD5(Pass);
-                ///Thêm cơ sở dữ liệu vào sau
-                Pass = PassWord;
+                using (StreamWriter SW = new StreamWriter(Application.StartupPath + "/SaveFolder/Pass.txt"))
+                {
+                    SW.Write(Pass);
+                }
+                return true;
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Lỗi Thêm Vào");
                 return false;
             }
-            return true;
         }
         /// <summary>
         /// Mã Hóa MD5
@@ -77,7 +81,13 @@ namespace TestEmgCV
         {
             try{
                 //Thêm cơ sở dữ liệu vào sau
-                PassWord = "e10adc3949ba59abbe56e057f20f883e";
+               // PassWord = "e10adc3949ba59abbe56e057f20f883e";
+                using (StreamReader SR = new StreamReader(Application.StartupPath + "/SaveFolder/Pass.txt"))
+                {
+                    PassWord=SR.ReadLine();
+                }
+
+
             }
             catch(Exception ex)
             {

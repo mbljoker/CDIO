@@ -61,5 +61,13 @@ namespace TestEmgCV
                 lblThongBao.Text = "Mật Khẩu cũ không đúng !";
             }
         }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnOk.PerformClick();
+            }
+        }
     }
 }

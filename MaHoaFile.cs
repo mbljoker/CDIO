@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using System.IO;
+using System.Diagnostics;
 
 namespace TestEmgCV
 {
@@ -20,6 +21,7 @@ namespace TestEmgCV
         protected MatKhau Pass;
         Hashtable IdLcFd;
         string File1=Application.StartupPath + "/SaveFolder/LocationFolder.txt";
+        string PathOpen;
         
         public MatKhau getPass()
         {
@@ -51,9 +53,12 @@ namespace TestEmgCV
             IdLcFd = RWFile.IdLtFd;
             //load lên dgv
             dataGridView1.DataSource = listToDataTable(ArrLocation);
+            if (dataGridView1.Rows.Count == 0) hidenFu(false);
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
+
+
             //LockAndUnlock.Pass=Pass;
             
             
@@ -228,12 +233,23 @@ namespace TestEmgCV
                 
                 //Xóa file và ghi lại list mới nếu list còn 1 giá trị thì new lại đối tương mới 
                 RWFile.saveFile(File1, null, true);
-                if (ArrLocation[dataGridView1.CurrentRow.Index].getStatus()==true) mởKhóaToolStripMenuItem.PerformClick();
+                MessageBox.Show(dataGridView1.CurrentRow.Index.ToString());
+                try
+                {
+                    if (ArrLocation[dataGridView1.CurrentRow.Index].getStatus() == true)
+                        mởKhóaToolStripMenuItem.PerformClick();
+                }
+                catch
+                {
+                    mởKhóaToolStripMenuItem.PerformClick();
+                }
+               
                 if (dataGridView1.CurrentRow.Index == 0)
                 {
                     //Nếu còn 1 đối tượng thì tiến hành khởi tạo cái các đối tượng
                     ArrLocation = new List<LocationFolder>();
                     IdLcFd = new Hashtable();
+                    hidenFu(false);
                 }
                 else
                 {
@@ -265,26 +281,35 @@ namespace TestEmgCV
         /// <param name="e"></param>
         private void dataGridView1_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //MessageBox.Show(e.RowIndex.ToString());
-           
-            if (e.RowIndex > -1)
+          
+            if (dataGridView1.Rows.Count != 0)
             {
-                ///Chọn Row nơi chuột đang trỏ
-                dataGridView1.Rows[e.RowIndex].Cells[0].Selected = true;
-                dataGridView1.Rows[e.RowIndex].Selected=true;
-                //Hiển thị theo trạng thái 
-                if (dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()=="Lock")
+
+                if (e.RowIndex > -1)
                 {
-                    khóaToolStripMenuItem.Visible = false;
-                    mởKhóaToolStripMenuItem.Visible = true;
-                  
+                    ///Chọn Row nơi chuột đang trỏ
+                    dataGridView1.Rows[e.RowIndex].Cells[0].Selected = true;
+                    dataGridView1.Rows[e.RowIndex].Selected = true;
+                    //Hiển thị theo trạng thái 
+                    if (dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString() == "Lock")
+                    {
+                        khóaToolStripMenuItem.Visible = false;
+                        mởKhóaToolStripMenuItem.Visible = true;
+
+                    }
+                    else
+                    {
+                        khóaToolStripMenuItem.Visible = true;
+                        mởKhóaToolStripMenuItem.Visible = false;
+                    }
+                    openToolStripMenuItem.Visible = true;
+                    xóaToolStripMenuItem.Visible = true;
+
                 }
-                else
-                {
-                    khóaToolStripMenuItem.Visible = true;
-                    mởKhóaToolStripMenuItem.Visible = false;
-                }
-                
+            }
+            else
+            {
+                hidenFu(false);
             }
            
         }
@@ -317,12 +342,14 @@ namespace TestEmgCV
 
                 dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value = "UnLock";
                 ArrLocation[dataGridView1.CurrentRow.Index].setStatus(false);
+               
             }
             else
             {
                 MessageBox.Show("Lỗi mở Khóa !");
-            }
 
+            }
+            PathOpen = strT;
             RWFile.saveFile(File1, null, true);
             foreach (LocationFolder tam in ArrLocation)
             {
@@ -333,6 +360,8 @@ namespace TestEmgCV
         private void khóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ///Tương tự như hàm Lock nhưng phải set lại Pass thực để lock
+            ///
+            
             string strT=null;
             if (ArrLocation[dataGridView1.CurrentRow.Index].getFileFolder() == true)
             {
@@ -359,5 +388,39 @@ namespace TestEmgCV
                 }
             }
         }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count != 0)
+            {
+                if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value == "Lock")
+                    mởKhóaToolStripMenuItem.PerformClick();
+                else PathOpen = ArrLocation[dataGridView1.CurrentRow.Index].getPathLocationFolder();
+                if (PathOpen != null)
+                {
+                   Process.Start("explorer.exe", "/select, " + PathOpen);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Ảnh toàn bộ chức năng
+        /// </summary>
+        /// <param name="b"></param>
+
+        void hidenFu(bool b)
+        {
+            khóaToolStripMenuItem.Visible = b;
+            mởKhóaToolStripMenuItem.Visible = b;
+            xóaToolStripMenuItem.Visible = b;
+            openToolStripMenuItem.Visible = b;
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+      
     }
 }

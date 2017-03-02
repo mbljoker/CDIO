@@ -29,26 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.picCamera = new Emgu.CV.UI.ImageBox();
             this.groupBox1_Camera = new System.Windows.Forms.GroupBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lblIndex = new System.Windows.Forms.Label();
             this.groupBoxPass = new System.Windows.Forms.GroupBox();
             this.btnEnter = new System.Windows.Forms.Button();
             this.tbxPassWord = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
+            this.picCamera = new Emgu.CV.UI.ImageBox();
             this.groupBox1_Camera.SuspendLayout();
             this.groupBoxPass.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picCamera
-            // 
-            this.picCamera.Location = new System.Drawing.Point(6, 19);
-            this.picCamera.Name = "picCamera";
-            this.picCamera.Size = new System.Drawing.Size(468, 335);
-            this.picCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picCamera.TabIndex = 2;
-            this.picCamera.TabStop = false;
             // 
             // groupBox1_Camera
             // 
@@ -82,7 +73,7 @@
             this.groupBoxPass.Controls.Add(this.tbxPassWord);
             this.groupBoxPass.Location = new System.Drawing.Point(18, 379);
             this.groupBoxPass.Name = "groupBoxPass";
-            this.groupBoxPass.Size = new System.Drawing.Size(164, 48);
+            this.groupBoxPass.Size = new System.Drawing.Size(181, 48);
             this.groupBoxPass.TabIndex = 6;
             this.groupBoxPass.TabStop = false;
             this.groupBoxPass.Text = "Mật Khẩu :";
@@ -91,7 +82,7 @@
             // 
             this.btnEnter.Location = new System.Drawing.Point(113, 19);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(45, 19);
+            this.btnEnter.Size = new System.Drawing.Size(62, 20);
             this.btnEnter.TabIndex = 1;
             this.btnEnter.Text = "Enter";
             this.btnEnter.UseVisualStyleBackColor = true;
@@ -104,12 +95,23 @@
             this.tbxPassWord.Size = new System.Drawing.Size(100, 20);
             this.tbxPassWord.TabIndex = 0;
             this.tbxPassWord.UseSystemPasswordChar = true;
+            this.tbxPassWord.TextChanged += new System.EventHandler(this.tbxPassWord_TextChanged);
             this.tbxPassWord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxPassWord_KeyDown);
+            // 
+            // picCamera
+            // 
+            this.picCamera.Location = new System.Drawing.Point(6, 19);
+            this.picCamera.Name = "picCamera";
+            this.picCamera.Size = new System.Drawing.Size(468, 335);
+            this.picCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCamera.TabIndex = 2;
+            this.picCamera.TabStop = false;
             // 
             // identifyFolder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(505, 442);
             this.Controls.Add(this.groupBoxPass);
             this.Controls.Add(this.lblIndex);
@@ -117,13 +119,15 @@
             this.Controls.Add(this.groupBox1_Camera);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(521, 481);
+            this.MinimumSize = new System.Drawing.Size(521, 481);
             this.Name = "identifyFolder";
             this.Text = "identifyFolder";
             this.Load += new System.EventHandler(this.identifyFolder_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.groupBox1_Camera.ResumeLayout(false);
             this.groupBoxPass.ResumeLayout(false);
             this.groupBoxPass.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

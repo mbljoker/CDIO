@@ -147,6 +147,10 @@
     <Content Include="haarcascade_frontalface_default.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\vforum.vn-hinh-nen-xanh-dep-6.jpg" />
+    <None Include="Resources\Folder-Blue Add.png" />
+    <None Include="Resources\Creative-Freedom-Shimmer-Document-Add.ico" />
+    <None Include="Resources\Creative-Freedom-Shimmer-Document-Add.png" />
     <Content Include="x64\cvextern.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

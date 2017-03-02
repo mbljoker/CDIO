@@ -131,5 +131,10 @@ namespace TestEmgCV
                 btnEnter.PerformClick();
             }
         }
+
+        private void tbxPassWord_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
