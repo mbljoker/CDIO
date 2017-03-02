@@ -233,7 +233,7 @@ namespace TestEmgCV
                 
                 //Xóa file và ghi lại list mới nếu list còn 1 giá trị thì new lại đối tương mới 
                 RWFile.saveFile(File1, null, true);
-                MessageBox.Show(dataGridView1.CurrentRow.Index.ToString());
+              //  MessageBox.Show(dataGridView1.CurrentRow.Index.ToString());
                 try
                 {
                     if (ArrLocation[dataGridView1.CurrentRow.Index].getStatus() == true)
@@ -393,12 +393,12 @@ namespace TestEmgCV
         {
             if (dataGridView1.Rows.Count != 0)
             {
-                if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value == "Lock")
+                if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString() == "Lock")
                     mởKhóaToolStripMenuItem.PerformClick();
-                else PathOpen = ArrLocation[dataGridView1.CurrentRow.Index].getPathLocationFolder();
+                PathOpen = ArrLocation[dataGridView1.CurrentRow.Index].getPathLocationFolder();
                 if (PathOpen != null)
                 {
-                   Process.Start("explorer.exe", "/select, " + PathOpen);
+                   Process.Start("explorer.exe", "/select," + PathOpen);
                 }
             }
         }
