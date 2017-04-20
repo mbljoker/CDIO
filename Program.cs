@@ -13,56 +13,116 @@ namespace TestEmgCV
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        
+       
         [STAThread]
         
         static void Main()
         {
-            string key = "11112323a2";  
-    
+            // Phần mềm chúng nếu đóng gói sẽ đóng lun cả các folder và file  
+            string key = "11112323a2";
             RegistryKey regKey = Registry.CurrentUser;
             try
             {
+
                 if (regKey.OpenSubKey("Software\\LockFolder") == null)
                 {
                     regKey = regKey.CreateSubKey("Software\\LockFolder");
                     regKey.SetValue("CatDat", 1);
                     regKey.Close();
-                    
-                   
+                    if (Directory.Exists(Application.StartupPath + "\\SaveFolder"
+                                            + ".{2559a1f2-21d7-11d4-bdaf-00c04f60b9f0}"))
+                    {
+                        DirectoryInfo d = new DirectoryInfo(Application.StartupPath
+                                                                 + "\\SaveFolder" + ".{2559a1f2-21d7-11d4-bdaf-00c04f60b9f0}");
+                        d.Attributes = FileAttributes.Normal;
+                        d.Delete();
+
+                    }
+
+
+                    #region SaveFolder
+                    if (!Directory.Exists(Application.StartupPath + "\\SaveFolder"))
+                    {
+                        Directory.CreateDirectory(Application.StartupPath + "\\SaveFolder");
+                    }
+                    if (!File.Exists(Application.StartupPath + "\\SaveFolder\\LocationFolder.txt"))
+                    {
+                        File.Create(Application.StartupPath + "\\SaveFolder\\LocationFolder.txt").Close();
+                    }
+                    if (!File.Exists(Application.StartupPath + "\\SaveFolder\\Pass.txt"))
+                    {
+                        File.Create(Application.StartupPath + "\\SaveFolder\\Pass.txt").Close();
+                        using (StreamWriter SW = new StreamWriter(Application.StartupPath + "/SaveFolder/Pass.txt"))
+                        {
+                            SW.Write("e10adc3949ba59abbe56e057f20f883e");
+                        }
+
+                    }
+                    if (!File.Exists(Application.StartupPath + "\\SaveFolder\\PassAnh.txt"))
+                    {
+                        File.Create(Application.StartupPath + "\\SaveFolder\\PassAnh.txt").Close();
+
+                    }
+                    #endregion
+
+                    #region SaveFolder
+
+                    if (!File.Exists(Application.StartupPath + "\\SaveFolder\\Data.txt"))
+                    {
+                        File.Create(Application.StartupPath + "\\SaveFolder\\Data.txt").Close();
+
+                    }
+                    #endregion
+
+                    LockAndUnlock.lockFolder(Application.StartupPath + "\\SaveFolder", key);
+
+
                 }
-               
-              //Mở khóa folder chứ thông tin 
-              LockAndUnlock.unlockFoder(Application.StartupPath + "\\SaveFolder" + ".{2559a1f2-21d7-11d4-bdaf-00c04f60b9f0}", key);
-              LockAndUnlock.unlockFoder(Application.StartupPath + "\\ImgTrain" + ".{2559a1f2-21d7-11d4-bdaf-00c04f60b9f0}", key);
                 
+                
+             
+              //Mở khóa folder chứ thông tin
+              
+              LockAndUnlock.unlockFoder(Application.StartupPath + "\\SaveFolder" + ".{2559a1f2-21d7-11d4-bdaf-00c04f60b9f0}", key);
+              if (!File.Exists(Application.StartupPath + "\\SaveFolder\\Pass.txt"))
+              {
+                  File.Create(Application.StartupPath + "\\SaveFolder\\Pass.txt").Close();
+                  using (StreamWriter SW = new StreamWriter(Application.StartupPath + "/SaveFolder/Pass.txt"))
+                  {
+                      SW.Write("e10adc3949ba59abbe56e057f20f883e");
+                  }
+
+              }
                 
             }
-            catch
+            catch(Exception e)
             {
+                MessageBox.Show(e.Message);
                 MessageBox.Show("Không thể khởi động chương trình !");
                 return;
             }
             
-             
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new MaHoaFile());
+            //MessageBox.Show("Vao Đây");
             identifyFolder Login = new identifyFolder();
             if (Login.ShowDialog() == DialogResult.OK)
             {         
                 MaHoaFile FormChinh = new MaHoaFile();
                 FormChinh.ShowDialog();
+                //FormChinh.Dispose();
+           
             }
+
             try
             {
+                
                 LockAndUnlock.lockFolder(Application.StartupPath + "\\SaveFolder", key);
-                LockAndUnlock.lockFolder(Application.StartupPath + "\\ImgTrain", key);
             }
             catch
             {
-                MessageBox.Show("Lỗi Đóng file !");
+                //MessageBox.Show("Lỗi Đóng FROM!");
             }
             ///Khóa lại 
             

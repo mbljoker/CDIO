@@ -84,7 +84,9 @@ namespace TestEmgCV
                     }
                 if (tam == null)
                 {
+                    //MessageBox.Show("null");
                     return false;
+
                 }
 
 

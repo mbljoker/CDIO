@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoiMatKhau));
             this.tbx_PasswordOld = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -110,7 +111,7 @@
             // 
             this.lblThongBao.AutoSize = true;
             this.lblThongBao.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(42, 160);
+            this.lblThongBao.Location = new System.Drawing.Point(36, 198);
             this.lblThongBao.Name = "lblThongBao";
             this.lblThongBao.Size = new System.Drawing.Size(0, 13);
             this.lblThongBao.TabIndex = 10;
@@ -126,12 +127,13 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnOk);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(203, 259);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(203, 259);
             this.Name = "DoiMatKhau";
-            this.Text = "DoiMatKhau";
+            this.Text = "FolderLock";
             this.Load += new System.EventHandler(this.DoiMatKhau_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

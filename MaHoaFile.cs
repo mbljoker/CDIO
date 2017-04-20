@@ -41,7 +41,7 @@ namespace TestEmgCV
 
         private void đổiMãPinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void MaHoaFile_Load(object sender, EventArgs e)
@@ -136,6 +136,7 @@ namespace TestEmgCV
                 }
                 //reload dgv
                 dataGridView1.DataSource = listToDataTable(ArrLocation);
+                
             }
         }
         /// <summary>
@@ -193,7 +194,7 @@ namespace TestEmgCV
                                 tam.setPathLocationFolderLock(str);
                                 tam.setStatus(true);
                             }
-                            
+         
                             tam.setFileFolder(false);
                             string s = fileNames[i] + "|" + "0|" + tam.getPathLocationFolderLock() + "|"
                                 + tam.getKeyLock() + "|" + (tam.getStatus()?"1":"0") + "|" + tam.getNameF();
@@ -244,7 +245,7 @@ namespace TestEmgCV
                     mởKhóaToolStripMenuItem.PerformClick();
                 }
                
-                if (dataGridView1.CurrentRow.Index == 0)
+                if (dataGridView1.CurrentRow.Index == 0 && dataGridView1.Rows.Count==1)
                 {
                     //Nếu còn 1 đối tượng thì tiến hành khởi tạo cái các đối tượng
                     ArrLocation = new List<LocationFolder>();
@@ -253,20 +254,23 @@ namespace TestEmgCV
                 }
                 else
                 {
+                   // MessageBox.Show(dataGridView1.CurrentRow.Index.ToString());
                     ///Xóa key trong HashTable
                     IdLcFd.Remove(ArrLocation[dataGridView1.CurrentRow.Index].getPathLocationFolder());
                     ArrLocation.RemoveAt(dataGridView1.CurrentRow.Index);
+                   
                     foreach (LocationFolder tam in ArrLocation)
                     {
                         RWFile.saveFile(File1, tam, false);
                     }
 
                 }
-                //cập nhật lại dữ liệu trên dgv
-                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
-                MessageBox.Show("Xóa thành Công !");
+                
+               
             }
-            
+            //cập nhật lại dữ liệu trên dgv
+            dataGridView1.DataSource = listToDataTable(ArrLocation);
+          
 
         }
 
@@ -319,8 +323,9 @@ namespace TestEmgCV
         private void mởKhóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            
+           
             string strT;
+            
             //Xác định đối tượng để mở khóa 
             if (ArrLocation[dataGridView1.CurrentRow.Index].getFileFolder() == true)
             {
@@ -346,10 +351,16 @@ namespace TestEmgCV
             }
             else
             {
+                if (!File.Exists(ArrLocation[dataGridView1.CurrentRow.Index].getPathLocationFolder()))
+                {
+                    ArrLocation.RemoveAt(dataGridView1.CurrentRow.Index);  
+                }
+                
                 MessageBox.Show("Lỗi mở Khóa !");
 
             }
             PathOpen = strT;
+            
             RWFile.saveFile(File1, null, true);
             foreach (LocationFolder tam in ArrLocation)
             {
@@ -387,6 +398,7 @@ namespace TestEmgCV
                     RWFile.saveFile(File1, tam, false);
                 }
             }
+          
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -419,6 +431,11 @@ namespace TestEmgCV
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            hidenFu(false);
         }
 
       

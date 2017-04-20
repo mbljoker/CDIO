@@ -29,139 +29,52 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.imageBox1 = new Emgu.CV.UI.ImageBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_Xong = new System.Windows.Forms.Button();
-            this.btn_10anh = new System.Windows.Forms.Button();
-            this.imageBox2 = new Emgu.CV.UI.ImageBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoiAnh));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.imageBox1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(497, 389);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Camera";
-            // 
-            // imageBox1
-            // 
-            this.imageBox1.Location = new System.Drawing.Point(6, 19);
-            this.imageBox1.Name = "imageBox1";
-            this.imageBox1.Size = new System.Drawing.Size(480, 360);
-            this.imageBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imageBox1.TabIndex = 2;
-            this.imageBox1.TabStop = false;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.btn_Xong);
-            this.groupBox1.Controls.Add(this.btn_10anh);
-            this.groupBox1.Controls.Add(this.imageBox2);
-            this.groupBox1.Location = new System.Drawing.Point(509, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(215, 389);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ảnh";
-            // 
-            // btn_Xong
-            // 
-            this.btn_Xong.Location = new System.Drawing.Point(119, 201);
-            this.btn_Xong.Name = "btn_Xong";
-            this.btn_Xong.Size = new System.Drawing.Size(75, 23);
-            this.btn_Xong.TabIndex = 4;
-            this.btn_Xong.Text = "Xong";
-            this.btn_Xong.UseVisualStyleBackColor = true;
-            this.btn_Xong.Click += new System.EventHandler(this.btn_Xong_Click);
-            // 
-            // btn_10anh
-            // 
-            this.btn_10anh.Location = new System.Drawing.Point(6, 201);
-            this.btn_10anh.Name = "btn_10anh";
-            this.btn_10anh.Size = new System.Drawing.Size(75, 23);
-            this.btn_10anh.TabIndex = 3;
-            this.btn_10anh.Text = "Lưu";
-            this.btn_10anh.UseVisualStyleBackColor = true;
-            this.btn_10anh.Click += new System.EventHandler(this.btn_10anh_Click);
-            // 
-            // imageBox2
-            // 
-            this.imageBox2.Location = new System.Drawing.Point(6, 19);
-            this.imageBox2.Name = "imageBox2";
-            this.imageBox2.Size = new System.Drawing.Size(188, 164);
-            this.imageBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imageBox2.TabIndex = 2;
-            this.imageBox2.TabStop = false;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(6, 19);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(188, 23);
-            this.progressBar1.TabIndex = 5;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.progressBar1);
-            this.groupBox3.Location = new System.Drawing.Point(6, 279);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 55);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
             // 
             // notifyIcon1
             // 
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(1, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(485, 364);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            // 
             // DoiAnh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(746, 448);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(498, 392);
+            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximumSize = new System.Drawing.Size(746, 448);
-            this.MinimumSize = new System.Drawing.Size(746, 448);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(2000, 2000);
             this.Name = "DoiAnh";
-            this.Text = "DoiAnh";
+            this.Text = "FolderLock";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DoiAnh_FormClosing);
             this.Load += new System.EventHandler(this.DoiAnh_Load);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).EndInit();
-            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
-        private Emgu.CV.UI.ImageBox imageBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btn_Xong;
-        private System.Windows.Forms.Button btn_10anh;
-        private Emgu.CV.UI.ImageBox imageBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }

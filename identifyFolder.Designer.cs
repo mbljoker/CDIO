@@ -29,27 +29,38 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(identifyFolder));
             this.groupBox1_Camera = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lblIndex = new System.Windows.Forms.Label();
             this.groupBoxPass = new System.Windows.Forms.GroupBox();
             this.btnEnter = new System.Windows.Forms.Button();
             this.tbxPassWord = new System.Windows.Forms.TextBox();
-            this.picCamera = new Emgu.CV.UI.ImageBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1_Camera.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxPass.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCamera)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1_Camera
             // 
-            this.groupBox1_Camera.Controls.Add(this.picCamera);
+            this.groupBox1_Camera.Controls.Add(this.pictureBox1);
             this.groupBox1_Camera.Location = new System.Drawing.Point(12, 12);
             this.groupBox1_Camera.Name = "groupBox1_Camera";
             this.groupBox1_Camera.Size = new System.Drawing.Size(480, 360);
             this.groupBox1_Camera.TabIndex = 3;
             this.groupBox1_Camera.TabStop = false;
             this.groupBox1_Camera.Text = "Camera";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(6, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(468, 335);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // lblName
             // 
@@ -98,14 +109,9 @@
             this.tbxPassWord.TextChanged += new System.EventHandler(this.tbxPassWord_TextChanged);
             this.tbxPassWord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxPassWord_KeyDown);
             // 
-            // picCamera
+            // timer1
             // 
-            this.picCamera.Location = new System.Drawing.Point(6, 19);
-            this.picCamera.Name = "picCamera";
-            this.picCamera.Size = new System.Drawing.Size(468, 335);
-            this.picCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picCamera.TabIndex = 2;
-            this.picCamera.TabStop = false;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // identifyFolder
             // 
@@ -118,16 +124,18 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.groupBox1_Camera);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(521, 481);
             this.MinimumSize = new System.Drawing.Size(521, 481);
             this.Name = "identifyFolder";
-            this.Text = "identifyFolder";
+            this.Text = "FolderLock";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.identifyFolder_FormClosing);
             this.Load += new System.EventHandler(this.identifyFolder_Load);
             this.groupBox1_Camera.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBoxPass.ResumeLayout(false);
             this.groupBoxPass.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCamera)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,12 +143,13 @@
 
         #endregion
 
-        private Emgu.CV.UI.ImageBox picCamera;
         private System.Windows.Forms.GroupBox groupBox1_Camera;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblIndex;
         private System.Windows.Forms.GroupBox groupBoxPass;
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.TextBox tbxPassWord;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
